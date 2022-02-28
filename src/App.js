@@ -1,5 +1,4 @@
-import logo from './logo.svg';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import LengthSetting from './components/LengthSetting';
 import Timer from './components/Timer';
 import Controls from './components/Controls';
@@ -8,36 +7,71 @@ import Controls from './components/Controls';
 function App() {
   const defaultBreakLength = 5;
   const defaultSessionLength = 25;
+  // let timerID = '';
 
   const [ breakTime, setBreakTime ] = useState(defaultBreakLength);
   const [ sessionTime, setSessionTime ] = useState(defaultSessionLength);
-  // const [ sessionTime, setSessionTime ] = useState(defaultSessionLength);
+  const [ stage, setStage ] = useState('Session');
+  const [ remainingTime, setRemainingTime ] = useState(sessionTime*60);
+  const [ isActive, setIsActive ] = useState(false);
+  // const [ isPaused, setIsPaused ] = useState(false);
+  // console.log('set default time');
 
   function handleReset() {
     setBreakTime(defaultBreakLength);
     setSessionTime(defaultSessionLength);
+    setStage('Session');
+    setRemainingTime(defaultSessionLength*60);
+    setIsActive(false);
   }
 
   function handleTimer(timer, step) {
+    if (isActive) return;
     switch (timer) {
-      case 'Break Length':
-        updateTimer(setBreakTime, breakTime, step);
+      case 'Break Length':        
+        updatePresetTime(setBreakTime, breakTime, step);
+        
         break;
       case 'Session Length':
-        updateTimer(setSessionTime, sessionTime, step);
+        updatePresetTime(setSessionTime, sessionTime, step);
+        // if (stage === 'Session') setRemainingTime(sessionTime*60);
         break;
     }
 
   }
 
-  function updateTimer(callback, state, step) {
+  function updatePresetTime(callback, state, step) {
+    // if (isActive) return;
     const MIN_TIME = 1;
     const MAX_TIME = 60;
 
     if ((state > MIN_TIME && step<=0) || (state < MAX_TIME && step>=0)) {
-            callback(state + step);
-          }
+      const timePreset = state + step;
+      callback(timePreset);
+      if (stage === 'Break' && callback === setBreakTime) {
+        setRemainingTime(timePreset*60);
+      } else if (stage === 'Session' && callback === setSessionTime) {
+        setRemainingTime(timePreset*60);
+      }
+    }
   }
+
+  function startPauseTimer() {
+    setIsActive(!isActive);
+  }
+
+  useEffect(() => {
+    let timer = null;
+    // if (isActive && !isPaused) {
+    if (isActive) {
+      timer = setInterval(() => {
+        setRemainingTime(remainingTime-1);
+      }, 1000);
+    } else {
+      clearInterval(timer);
+    }
+    return () => clearInterval(timer);
+  });
 
   return (
     <div>
@@ -46,8 +80,8 @@ function App() {
         <LengthSetting name='Break Length' value={breakTime} handleClick={(t,s) => handleTimer(t,s)} />
         <LengthSetting name='Session Length' value={sessionTime} handleClick={(t,s) => handleTimer(t,s)} />
       </div>
-      <Timer />
-      <Controls /> 
+      <Timer stage={stage} time={remainingTime} />
+      <Controls startPause={startPauseTimer} reset={handleReset} /> 
     </div>
   );
 }
