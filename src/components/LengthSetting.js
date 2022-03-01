@@ -1,5 +1,3 @@
-// import { useState } from 'react';
-
 export default function LengthSetting(props) {
     const DECREMENT_STEP = -1;
     const INCREMENT_STEP = 1;
