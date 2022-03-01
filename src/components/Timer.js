@@ -8,8 +8,8 @@ export default function Timer(props) {
 
     return (
         <div>
-            <div>{props.stage}</div>
-            <div>{`${minutes}:${seconds}`}</div>
+            <div id="timer-label" >{props.stage}</div>
+            <div id="time-left" >{`${minutes}:${seconds}`}</div>
         </div>
     );
 }

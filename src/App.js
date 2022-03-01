@@ -7,21 +7,26 @@ import Controls from './components/Controls';
 function App() {
   const defaultBreakLength = 5;
   const defaultSessionLength = 25;
-  // let timerID = '';
 
   const [ breakTime, setBreakTime ] = useState(defaultBreakLength);
   const [ sessionTime, setSessionTime ] = useState(defaultSessionLength);
   const [ stage, setStage ] = useState('Session');
   const [ remainingTime, setRemainingTime ] = useState(sessionTime*60);
   const [ isActive, setIsActive ] = useState(false);
-  // const [ isPaused, setIsPaused ] = useState(false);
-  // console.log('set default time');
 
   if (remainingTime < 0) {
     handleOutOfTime();
   }
+  if (remainingTime === 0) {
+    document.querySelector('#beep').play();
+  }
 
   function handleReset() {
+    const audio = document.querySelector('#beep');
+    if (!audio.paused) {
+      audio.pause();
+      audio.load();
+    }
     setBreakTime(defaultBreakLength);
     setSessionTime(defaultSessionLength);
     setStage('Session');
@@ -38,14 +43,12 @@ function App() {
         break;
       case 'Session Length':
         updatePresetTime(setSessionTime, sessionTime, step);
-        // if (stage === 'Session') setRemainingTime(sessionTime*60);
         break;
     }
 
   }
 
   function updatePresetTime(callback, state, step) {
-    // if (isActive) return;
     const MIN_TIME = 1;
     const MAX_TIME = 60;
 
@@ -66,11 +69,10 @@ function App() {
 
   useEffect(() => {
     let timer = null;
-    // if (isActive && !isPaused) {
     if (isActive) {
       timer = setInterval(() => {
         setRemainingTime(remainingTime-1);
-      }, 50);
+      }, 1000);
     } else {
       clearInterval(timer);
     }
@@ -85,8 +87,6 @@ function App() {
       setStage('Session');
       setRemainingTime(sessionTime*60);
     }
-    
-    document.querySelector('#beep').play();
   }
 
   return (

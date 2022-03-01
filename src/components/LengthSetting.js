@@ -7,18 +7,25 @@ export default function LengthSetting(props) {
     const decrementTimer = (timer, step) => props.handleClick(props.name, DECREMENT_STEP);
     const incrementTimer = (timer, step) => props.handleClick(props.name, INCREMENT_STEP);
 
+    let type = '';
 
+    if (props.name.includes('Break')) {
+        type = 'break';
+    } else {
+        type = 'session';
+    }
+    
     return (
         <div>
-            <div>
+            <div id={`${type}-label`}>
                 {props.name}
             </div>
             <div>
-                <button onClick={decrementTimer}>
+                <button id={`${type}-decrement`} onClick={decrementTimer}>
                     -
                 </button>
-                <span>{props.value}</span>
-                <button onClick={incrementTimer}>
+                <span id={`${type}-length`} >{props.value}</span>
+                <button id={`${type}-increment`} onClick={incrementTimer}>
                     +
                 </button>
             </div>

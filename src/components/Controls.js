@@ -1,10 +1,10 @@
 export default function Controls(props) {
     return (
         <div>
-            <button onClick={props.startPause} >
+            <button id="start_stop" onClick={props.startPause} >
                 START / PAUSE
             </button>
-            <button onClick={props.reset} >
+            <button id="reset" onClick={props.reset} >
                 RESET
             </button>
         </div>
