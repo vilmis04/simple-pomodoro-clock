@@ -78,11 +78,15 @@ function App() {
   });
 
   function handleOutOfTime () {
-    setIsActive(false);
-    setRemainingTime(0);
-    console.log('Times out');
-
-    // return null;
+    if (stage === 'Session') {
+      setStage('Break');
+      setRemainingTime(breakTime*60);
+    } else {
+      setStage('Session');
+      setRemainingTime(sessionTime*60);
+    }
+    
+    document.querySelector('#beep').play();
   }
 
   return (
@@ -93,6 +97,7 @@ function App() {
         <LengthSetting name='Session Length' value={sessionTime} handleClick={(t,s) => handleTimer(t,s)} />
       </div>
       <Timer stage={stage} time={remainingTime} />
+      <audio id="beep" preload="auto" src="https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/audio/BeepSound.wav"></audio>
       <Controls startPause={startPauseTimer} reset={handleReset} /> 
     </div>
   );
