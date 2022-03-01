@@ -17,6 +17,10 @@ function App() {
   // const [ isPaused, setIsPaused ] = useState(false);
   // console.log('set default time');
 
+  if (remainingTime < 0) {
+    handleOutOfTime();
+  }
+
   function handleReset() {
     setBreakTime(defaultBreakLength);
     setSessionTime(defaultSessionLength);
@@ -66,12 +70,20 @@ function App() {
     if (isActive) {
       timer = setInterval(() => {
         setRemainingTime(remainingTime-1);
-      }, 1000);
+      }, 50);
     } else {
       clearInterval(timer);
     }
     return () => clearInterval(timer);
   });
+
+  function handleOutOfTime () {
+    setIsActive(false);
+    setRemainingTime(0);
+    console.log('Times out');
+
+    // return null;
+  }
 
   return (
     <div>
