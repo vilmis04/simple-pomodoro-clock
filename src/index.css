@@ -2,6 +2,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
+  font-family: monospace;
 }
 
 body {
@@ -15,4 +17,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #1d5751;
+  color: white;
 }

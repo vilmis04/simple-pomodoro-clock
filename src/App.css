@@ -1,0 +1,21 @@
+#app {
+    width: 30rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* border: solid 1px black; */
+    padding: 1rem;
+  }
+
+#lengthSettingStyles {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }  
+
+#projectTitle {
+      padding: 1rem;
+      font-size: 3rem;
+      font-weight: normal;
+  }

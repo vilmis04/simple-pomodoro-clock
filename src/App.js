@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import LengthSetting from './components/LengthSetting/LengthSetting';
 import Timer from './components/Timer/Timer';
 import Controls from './components/Controls/Controls';
+import './App.css';
 
 
 function App() {
@@ -89,10 +90,11 @@ function App() {
     }
   }
 
+
   return (
-    <div>
-      <h1>25 + 5 Clock</h1>
-      <div>
+    <div id='app' >
+      <h1 id='projectTitle' >25 + 5 Clock</h1>
+      <div id='lengthSettingStyles' >
         <LengthSetting name='Break Length' value={breakTime} handleClick={(t,s) => handleTimer(t,s)} />
         <LengthSetting name='Session Length' value={sessionTime} handleClick={(t,s) => handleTimer(t,s)} />
       </div>
