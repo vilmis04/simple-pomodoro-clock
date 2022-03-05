@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import LengthSetting from './components/LengthSetting';
-import Timer from './components/Timer';
-import Controls from './components/Controls';
+import LengthSetting from './components/LengthSetting/LengthSetting';
+import Timer from './components/Timer/Timer';
+import Controls from './components/Controls/Controls';
 
 
 function App() {
