@@ -100,7 +100,7 @@ function App() {
       </div>
       <Timer stage={stage} time={remainingTime} />
       <audio id="beep" preload="auto" src="https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/audio/BeepSound.wav"></audio>
-      <Controls startPause={startPauseTimer} reset={handleReset} /> 
+      <Controls phase={isActive} startPause={startPauseTimer} reset={handleReset} /> 
     </div>
   );
 }

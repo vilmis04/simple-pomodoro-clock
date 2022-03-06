@@ -1,0 +1,12 @@
+.controls-container button {
+    font-size: 2rem;
+    width: 3rem;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: white;
+}
+
+.controls-container button:hover {
+    color: aqua;
+}
