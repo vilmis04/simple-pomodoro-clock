@@ -1,3 +1,4 @@
+import './Timer.css';
 export default function Timer(props) {
     
     let minutes = Math.floor(props.time / 60);
@@ -7,7 +8,7 @@ export default function Timer(props) {
     seconds = seconds < 10 ? '0'.concat(seconds) : ''.concat(seconds);
 
     return (
-        <div>
+        <div className='timer-container' >
             <div id="timer-label" >{props.stage}</div>
             <div id="time-left" >{`${minutes}:${seconds}`}</div>
         </div>
