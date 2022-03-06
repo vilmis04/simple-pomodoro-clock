@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/simple-pomodoro-clock/static/css/main.6e1cf2cc.css",
+    "main.js": "/simple-pomodoro-clock/static/js/main.e64286d7.js",
+    "index.html": "/simple-pomodoro-clock/index.html",
+    "main.6e1cf2cc.css.map": "/simple-pomodoro-clock/static/css/main.6e1cf2cc.css.map",
+    "main.e64286d7.js.map": "/simple-pomodoro-clock/static/js/main.e64286d7.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6e1cf2cc.css",
+    "static/js/main.e64286d7.js"
+  ]
+}
