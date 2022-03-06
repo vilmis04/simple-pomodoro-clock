@@ -1,3 +1,4 @@
+import './LengthSetting.css';
 export default function LengthSetting(props) {
     const DECREMENT_STEP = -1;
     const INCREMENT_STEP = 1;
@@ -14,8 +15,8 @@ export default function LengthSetting(props) {
     }
     
     return (
-        <div>
-            <div id={`${type}-label`}>
+        <div className="setting-container" >
+            <div className='setting-label' id={`${type}-label`}>
                 {props.name}
             </div>
             <div>
